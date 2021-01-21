@@ -41,7 +41,7 @@ function UploadCvPage(){
                 })
                 if(res.success) {
                     setResumes([...resumes,res.data])
-                    history.push('/')
+                    history.push('/profile')
                 }    
             }
         }

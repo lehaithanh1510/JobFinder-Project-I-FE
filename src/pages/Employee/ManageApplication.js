@@ -37,7 +37,7 @@ function ManageApplication(){
     const renderApplications = (applications) => {
         return applications.map(application => <ListGroup.Item key={application._id}>
             <div onClick={() => history.push(`/post/${application.job._id}`)}><h3 style={{ cursor:"pointer"}}>{application.job.title}</h3></div>
-            <strong>Your CV: </strong><Nav.Link href={application.resume.link} target="_blank">{application.resume.title}</Nav.Link>
+            <strong>Your CV: </strong>{application.resume && <Nav.Link href={application.resume.link} target="_blank">{application.resume.title}</Nav.Link>}
             <div><strong>Submited At: </strong> {parseISO(application.createdAt).toString()}</div>
             <strong>Status: </strong>
             {application.active === 'pending' && <Badge variant='warning'>Pending</Badge>}

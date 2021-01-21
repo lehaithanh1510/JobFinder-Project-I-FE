@@ -5,12 +5,13 @@ import { useState, useContext, useEffect } from 'react'
 import {Redirect, Link, useParams, useHistory} from 'react-router-dom'
 import {AuthContext} from '../../App'
 import api from '../../api/api' 
+import Swal from 'sweetalert2'
 
 function ApplyJobPage(){
     const {user,role,resumes} = useContext(AuthContext)
     const {id} = useParams()
     const [post,setPost] = useState(null)
-    const [form, setForm] = useState({resume:"",message:""})
+    const [form,setForm] = useState({resume:"",message:""})
     const history = useHistory()
 
     const fetchPost = async(postId) => {
@@ -27,7 +28,7 @@ function ApplyJobPage(){
 
     useEffect(() => {
         fetchPost(id)
-    },[id])
+    },[])
 
     
     const renderResume = (resumes) => {
@@ -46,7 +47,7 @@ function ApplyJobPage(){
     const handleSubmitForm = async(e) => {
         e.preventDefault()
         if(!form.resume){
-            alert('You need to attach a CV')
+            Swal.fire('Oops...', 'You need to attach a CV.', 'error')
         }
         else{
             const customForm = {...form}
@@ -74,7 +75,7 @@ function ApplyJobPage(){
                     name="resume"
                     onChange={onChangeForm}
                     >
-                        <option disabled hidden>Select a CV</option>
+                        <option disabled selected>Select a CV</option>
                         {renderResume(resumes)}
                     </Form.Control>
                 </Form.Group>
