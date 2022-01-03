@@ -1,0 +1,6 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  min-height: 8vh;
+}
